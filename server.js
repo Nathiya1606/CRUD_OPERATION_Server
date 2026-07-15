@@ -3,15 +3,11 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors({
-    origin: "*"
-}));
+app.use(cors());
 app.use(express.json());
 
-// Temporary Array Database
 let students = [];
 
-// Home
 app.get("/", (req, res) => {
     res.json({
         success: true,
@@ -19,9 +15,7 @@ app.get("/", (req, res) => {
     });
 });
 
-// CREATE
 app.post("/students", (req, res) => {
-
     const student = {
         id: students.length + 1,
         name: req.body.name,
@@ -37,15 +31,11 @@ app.post("/students", (req, res) => {
     });
 });
 
-// READ - Get All Students
 app.get("/students", (req, res) => {
-
     res.json(students);
 });
 
-// READ - Get One Student
 app.get("/students/:id", (req, res) => {
-
     const student = students.find(
         s => s.id == req.params.id
     );
@@ -59,9 +49,7 @@ app.get("/students/:id", (req, res) => {
     res.json(student);
 });
 
-// UPDATE
 app.put("/students/:id", (req, res) => {
-
     const student = students.find(
         s => s.id == req.params.id
     );
@@ -82,9 +70,7 @@ app.put("/students/:id", (req, res) => {
     });
 });
 
-// DELETE
 app.delete("/students/:id", (req, res) => {
-
     students = students.filter(
         s => s.id != req.params.id
     );
