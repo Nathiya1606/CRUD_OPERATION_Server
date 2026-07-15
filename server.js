@@ -95,7 +95,4 @@ app.delete("/students/:id", (req, res) => {
     });
 });
 
-// Server
-app.listen(3000, () => {
-    console.log("Server Running on Port 3000");
-});
+module.exports = app;
